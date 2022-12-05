@@ -49,3 +49,8 @@ for i in range(1,n,2): #transforma em decimal
     an_integer = int(hex_string, 16)
     hex_value = hex(an_integer)   
     print(an_integer)
+
+#aaaa
+
+
+
