@@ -50,6 +50,3 @@ for i in range(1,n,2): #transforma em decimal
     hex_value = hex(an_integer)   
     print(an_integer)
 
-
-#casa a
-
