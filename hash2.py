@@ -42,7 +42,7 @@ print("hash2")
 for i in range(len(addr)):
     temp = hash[i]
     hash2.append(temp[-1])    #pega parte inicial da hash
-   # print(hash2[i])     # comentar pra ficar melhor de ver
+    # print(hash2[i])     # comentar pra ficar melhor de ver
 
 for i in range(1,n,2): #transforma em decimal
     hex_string = hash2[i]
@@ -50,7 +50,6 @@ for i in range(1,n,2): #transforma em decimal
     hex_value = hex(an_integer)   
     print(an_integer)
 
-#aaaa
 
-
+#casa a
 
