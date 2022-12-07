@@ -50,3 +50,7 @@ for i in range(1,n,2): #transforma em decimal
     hex_value = hex(an_integer)   
     print(an_integer)
 
+# 16 10 1000
+# bytes gastos
+# acc 
+# hash 4
