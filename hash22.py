@@ -12,7 +12,7 @@ bits = 0
 hash=[]
 hash1=[]
 hash2=[]
-hash3=[]
+hashc=[]
 addr = np.random.randint(0,2**ba, (n,1))   #gerando numero de entrada 
 outs = np.random.randint(0,2**bo, (n,1))   #gerando numero de saida
 print("") #espaçamento
@@ -60,8 +60,8 @@ for i in range(1,T,1): #imprime em decimal
     
 
 for i in range(len(addr)):
-    hash3.append(str(hash1[i])+str(hash2[i]))
-dup = set(hash3)
+    hashc.append(str(hash1[i])+str(hash2[i]))
+dup = set(hashc)
 acc = len(dup)
 acc = (acc / n )*100 
 bits = (ba+bo+4*a+4*a)*n
@@ -77,7 +77,7 @@ print("")
 print("")
 print(hash2)
 print("")
-print(hash3)"""
+print(hashc)"""
 
 
 
