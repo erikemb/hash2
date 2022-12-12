@@ -1,10 +1,10 @@
 from hashlib import sha256
 import numpy as np
 
-ba = 4; # bits entrada
-bo = 3; #bits armazenados 
-n = 10;  #numeros de entradas 
-a = 16; # numero de caracteres pegos da hash
+ba = 16; # bits entrada
+bo = 10; #bits armazenados 
+n = 1000;  #numeros de entradas 
+a = 3; # numero de caracteres pegos da hash
 acc = 0 # precisão 
 T = 5 # termos na hash
 bits = 0
@@ -29,10 +29,16 @@ for i in range(len(addr)):
     hash3.append(temp[32:32+a:1])
     hash4.append(temp[-a:])
 
-"""for i in range(len(addr)):
-    print(hash[i])
-
 for i in range(len(addr)):
-    print(hash2[i])"""
-
-
+    hashc.append(str(hash1[i])+str(hash2[i])+str(hash3[i])+str(hash4[i]))
+dup = set(hashc)
+acc = len(dup)
+acc = (acc / n )*100 
+bits = (ba+bo+4*a+4*a)*n
+bits = bits/8
+#bits = bits/1024 #para por em kb
+#bits = bits/1024 #para por em mb
+print("")
+print(acc,"%")
+print("consumo é :", bits, "bytes")
+print("")

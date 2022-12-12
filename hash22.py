@@ -69,7 +69,6 @@ bits = bits/8
 #bits = bits/1024
 #bits = bits/1024
 print("")
-#acc = 100-((100*acc)/T)
 print(acc,"%")
 print("consumo é :", bits, "bytes")
 print("")
