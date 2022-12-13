@@ -43,3 +43,16 @@ for i in range(loop):
     media = media + temp
 media = media / loop
 print(f' a acc é de  {media:,.2f}%')
+
+##########
+
+"""print("a acc do end com o check eh de: ", acc,"%")
+
+for i in range(n): #transforma em decimal o hash1 de endereços para fazer o desvio
+    hex_string = hash1[i]
+    an_integer = int(hex_string, 16)
+    dec1.append(an_integer)
+    
+desvioend=(np.std(dec1))  #desvio
+print(f'desvio do end é de  {desvioend:,.2f}')
+"""
