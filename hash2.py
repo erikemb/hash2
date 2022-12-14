@@ -33,7 +33,7 @@ print("hash1")
 for i in range(1,n,2): #transforma em decimal
     hex_string = hash1[i]
     an_integer = int(hex_string, 16)
-    hex_value = hex(an_integer)   
+   # hex_value = hex(an_integer)   
     print(an_integer)
 
 print("")
