@@ -4,7 +4,7 @@ import numpy as np
 
 ba = 4; # bits entrada
 bo = 3; #bits armazenados 
-n = 16;  #numeros de entradas
+n = 8;  #numeros de entradas
 
 sha=[]  #sha256 da entrada
 shain=[] #parte inicial da sha
@@ -58,16 +58,42 @@ for i in range(0,n,1) :
         hash22.append(shain[i])  
         hash2.append(arm1[i])
 
+for i in range(0,n,1) : 
+    if (shain[i] not in hash11) and (shain[i] not in hash22) and (shain[i] not in hash33) and (len(hash3))<m:
+        hash33.append(shain[i])  
+        hash3.append(arm1[i])
+
+for i in range(0,n,1) : 
+    if (shain[i] not in hash11) and (shain[i] not in hash22) and (shain[i] not in hash33) and (shain[i] not in hash44) and (len(hash4))<m:
+        hash44.append(shain[i])  
+        hash4.append(arm1[i])
 
 
+"""print("arm1")
+for i in range(len(arm1)):
+    print (arm1[i])"""
 
 
+print("hash1")
 for i in range(len(hash1)):
     print (hash1[i])
 
-print("")
+print("hash2")
 for i in range(len(hash2)):
     print (hash2[i])
+
+print("hash3")
+for i in range(len(hash3)):
+    print (hash3[i])
+
+print("hash4")
+for i in range(len(hash4)):
+    print (hash4[i])
+
+
+
+
+
 
 print("")
 tax = 100 * (len(hash1)+len(hash2)) / len(arm1)

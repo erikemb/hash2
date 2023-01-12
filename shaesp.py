@@ -48,7 +48,7 @@ for i in range(0,n,1) :
       hash1.append(arm1[i])
       
 for i in range(0,n,1) :  
-    if (shain[i] not in hash11) and (shain[i] not in hash22) and (len(hash2))<m:
+    if (arm1[i] not in hash1) and (shain[i] not in hash22) and (len(hash2))<m:
         hash22.append(shain[i])  
         hash2.append(arm1[i])
 
