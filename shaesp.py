@@ -2,15 +2,18 @@ from hashlib import sha256
 import numpy as np
 
 
-ba = 4; # bits entrada
-bo = 3; #bits armazenados 
-n = 8;  #numeros de entradas 
-m = 4; #quantidade armazenada 
-hex_string1 = "casa"
-sha=[]
-hash1=[]
-hash2=[]
-arm1=[]
+ba = 16; # bits entrada
+bo = 10; #bits armazenados 
+n = 4000;  #numeros de entradas
+m = 2000 ; #valor max na hash 
+sha=[]  #sha256 da entrada
+shain=[] #parte inicial da sha
+shaout=[] #parte final da sha 
+arm1=[]  #união shain bo shaout
+hash1 = [] 
+hash11 = [] #testador de repetição do hash1
+hash2 = []
+hash22 = [] #testador de repetição do hash2
 
 
 addr = np.random.randint(0,2**ba, (n,1))   #gerando numero de entrada 
@@ -24,20 +27,39 @@ for i in range(len(addr)):
 
 for i in range(len(addr)):
     temp = sha[i]
-    hash1.append(temp[:a])    #pega parte inicial da hash
-    hash2.append(temp[-a:])   #pega parte final da hash   
+    shain.append(temp[:a])    #pega parte inicial da hash
+    shaout.append(temp[-a:])   #pega parte final da hash   
 
-for i in range(1,n,2): #transforma em decimal
-    hex_string = hash1[i]
-    an_integer = int(hex_string, 16)
-    hash1[i] = an_integer   
+for i in range(0,n,1): #transforma em decimal
+    hex_string = shain[i]
+    shain[i] = int(hex_string, 16)
+    hex_string = shaout[i]
+    shaout[i] = int(hex_string, 16)   
     
 
-
-for i in range(len(addr)):
-        temp = [hash1[i]],[np.int(outs[i])],[hash2[i]]
+for i in range(0,n,1):
+        temp = [shain[i]],[np.int(outs[i])],[shaout[i]]
         arm1.append(temp)
 
-for i in range(len(addr)):
-    print(arm1[i])
+for i in range(0,n,1) :
+    if (shain[i] not in hash11) and (len(hash1))<m:
+      hash11.append(shain[i])  
+      hash1.append(arm1[i])
+      
+for i in range(0,n,1) :  
+    if (shain[i] not in hash11) and (shain[i] not in hash22) and (len(hash2))<m:
+        hash22.append(shain[i])  
+        hash2.append(arm1[i])
+
+
+for i in range(len(hash1)):
+    print (hash1[i])
+
+print("")
+for i in range(len(hash2)):
+    print (hash2[i])
+
+print("")
+tax = 100 * (len(hash1)+len(hash2)) / len(arm1)
+print(tax, '%')
 
