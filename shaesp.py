@@ -63,5 +63,3 @@ for i in range(len(hash2)):
 print("")
 tax = 100 * (len(hash1)+len(hash2)) / len(arm1)
 print(tax, '%')
-
-#testea

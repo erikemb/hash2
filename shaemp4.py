@@ -2,9 +2,9 @@ from hashlib import sha256
 import numpy as np
 
 
-ba = 4; # bits entrada
-bo = 3; #bits armazenados 
-n = 16;  #numeros de entradas
+ba = 16; # bits entrada
+bo = 10; #bits armazenados 
+n = 4000;  #numeros de entradas
 
 sha=[]  #sha256 da entrada
 shain=[] #parte inicial da sha
