@@ -2,9 +2,10 @@ from hashlib import sha256
 import numpy as np
 
 
-ba = 16; # bits entrada
-bo = 10; #bits armazenados 
-n = 4000;  #numeros de entradas
+ba = 4; # bits entrada
+bo = 3; #bits armazenados 
+n = 16;  #numeros de entradas
+
 sha=[]  #sha256 da entrada
 shain=[] #parte inicial da sha
 shaout=[] #parte final da sha 
@@ -13,9 +14,12 @@ hash1 = []
 hash11 = [] #testador de repetição do hash1
 hash2 = []
 hash22 = [] #testador de repetição do hash2
+hash3 = [] 
+hash33 = [] #testador de repetição do hash3
+hash4= []
+hash44 = [] #testador de repetição do hash4
 
-
-m = n / 2
+m = n / 4
 
 addr = np.random.randint(0,2**ba, (n,1))   #gerando numero de entrada 
 outs = np.random.randint(0,2**bo, (n,1))   #gerando numero de saida
@@ -42,6 +46,8 @@ for i in range(0,n,1):
         temp = [shain[i]],[np.int(outs[i])],[shaout[i]]
         arm1.append(temp)
 
+#parte teste
+
 for i in range(0,n,1) :
     if (shain[i] not in hash11) and (len(hash1))<m:
       hash11.append(shain[i])  
@@ -51,6 +57,9 @@ for i in range(0,n,1) :
     if (shain[i] not in hash11) and (shain[i] not in hash22) and (len(hash2))<m:
         hash22.append(shain[i])  
         hash2.append(arm1[i])
+
+
+
 
 
 for i in range(len(hash1)):
