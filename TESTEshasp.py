@@ -6,7 +6,7 @@ def teste2():
 
     ba = 16; # bits entrada
     bo = 10; #bits armazenados 
-    n = 1000;  #numeros de entradas
+    n = 4000;  #numeros de entradas
     sha=[]  #sha256 da entrada
     shain=[] #parte inicial da sha
     shaout=[] #parte final da sha 
@@ -54,19 +54,11 @@ def teste2():
             hash22.append(shain[i])  
             hash2.append(arm1[i])
 
-
-    """for i in range(len(hash1)):
-        print (hash1[i])
-
-    print("")
-    for i in range(len(hash2)):
-        print (hash2[i])"""""
-
     tax = 100 * (len(hash1)+len(hash2)) / len(arm1)
 
     return tax
     
-loop = 100
+loop = 500
 numeros = []
 for i in range(loop):  
     numeros.append(teste2())
@@ -75,3 +67,8 @@ media = np.mean(numeros)
 desvio = np.std(numeros)
 print("A média é:", media)
 print("O desvio padrão é:", desvio)
+
+
+
+#A média é: 87.10584999999999
+#O desvio padrão é: 0.4179019352671152

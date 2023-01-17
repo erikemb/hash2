@@ -98,4 +98,3 @@ for i in range(len(hash4)):
 print("")
 tax = 100 * (len(hash1)+len(hash2)+len(hash3)+len(hash4)) / len(arm1)
 print(tax, '%')
-
