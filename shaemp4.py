@@ -25,15 +25,15 @@ addr = np.random.randint(0,2**ba, (n,1))   #gerando numero de entrada
 outs = np.random.randint(0,2**bo, (n,1))   #gerando numero de saida
 
 n_bits = np.ceil(np.log2(n))   #calcula numero de bits a serem pegos da hash
-a = int(np.ceil(n_bits/4))
+ax = int(np.ceil(n_bits/4))
 
 for i in range(len(addr)):
     sha.append(sha256("{0:b}".format(addr[i].tolist()[0]).encode()).hexdigest())   #armazenando os sha256
 
 for i in range(len(addr)):
     temp = sha[i]
-    shain.append(temp[:a])    #pega parte inicial da hash
-    shaout.append(temp[-a:])   #pega parte final da hash   
+    shain.append(temp[:ax])    #pega parte inicial da hash
+    shaout.append(temp[-ax:])   #pega parte final da hash   
 
 for i in range(0,n,1): #transforma em decimal
     hex_string = shain[i]
@@ -98,3 +98,4 @@ for i in range(len(hash4)):
 print("")
 tax = 100 * (len(hash1)+len(hash2)+len(hash3)+len(hash4)) / len(arm1)
 print(tax, '%')
+print ((n_bits+bo+n_bits)*(n), "bits")

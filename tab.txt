@@ -1,0 +1,18 @@
+ba = 16; # bits entrada
+bo = 10; #bits armazenados 
+n = 4000;  #numeros de entradas
+loop = 500 # numero de testes realizados 
+136000.0 bits é o consumo máximo  
+
+hash 2
+
+ 
+A media da precisão é: 87.1%
+O desvio padrão é: 0.418
+consumo medio é :118456 bits
+
+hash 4
+
+A média é: 96.6%
+O desvio padrão é: 0.250
+consumo medio é :131376 bits
