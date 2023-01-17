@@ -72,7 +72,7 @@ def teste4() :
 
     return tax
 
-loop = 100
+loop = 500
 numeros = []
 for i in range(loop):  
     numeros.append(teste4())
@@ -81,3 +81,6 @@ media = np.mean(numeros)
 desvio = np.std(numeros)
 print("A média é:", media)
 print("O desvio padrão é:", desvio)
+
+#A média é: 96.62329999999999
+#O desvio padrão é: 0.2500242188268967
