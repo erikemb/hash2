@@ -65,6 +65,6 @@ tax = 100 * (len(hash1)+len(hash2)) / len(arm1)
 print(tax, '%')"""
 
 #print ((a+bo+a)*(len(hash1)+len(hash2)), "bits")
-print ((n_bits+bo+n_bits)*(n), "bits")
-print (ax)
-print (n_bits)
+#print ((n_bits+bo+n_bits)*(n), "bits")
+#print (ax)
+print (type(addr))
