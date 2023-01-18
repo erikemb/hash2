@@ -2,14 +2,8 @@ from hashlib import sha256
 import numpy as np
 import numpy
 
-
-ba = 16; # bits entrada
-bo = 10; #bits armazenados 
-n = 4000;  #numeros de entradas
-
+numeros = []
 maior = 0
-
-m = n / 4
 
 tables = []
 
@@ -46399,9 +46393,10 @@ for d in tables:
     hash4= []
     hash44 = [] #testador de repetição do hash4
     n = len(d)
+    m = n / 4
     for k in d.keys():
         #print(str(k) + '-> '+ str(d[k]))     
-       
+
         if maior < k :
             maior = k
 
@@ -46453,11 +46448,14 @@ for d in tables:
             hash4.append(arm1[i])
 
     tax = 100 * (len(hash1)+len(hash2)+len(hash3)+len(hash4)) / len(arm1)
-    print(tax,"%")
-    print("")
+    #print(tax,"%")
+    #print("")
 
+    numeros.append(tax)
 
-
-
+media = np.mean(numeros)
+desvio = np.std(numeros)
+print("A precisão média é:", media)
+print("O desvio padrão é:", desvio)
 
 
