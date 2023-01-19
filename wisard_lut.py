@@ -9,6 +9,7 @@ abs = 0 # quantidade de termos usados
 quant = 0 # quantidade de  termos 
 tables = []
 bits = 0
+quanthash = 6    # 1 2 4 6
 
 table_tmp = {}
 table_tmp[1024] = 233
@@ -46395,8 +46396,13 @@ for d in tables:
     hash33 = [] #testador de repetição do hash3
     hash4= []
     hash44 = [] #testador de repetição do hash4
+    hash5 = [] 
+    hash55 = [] #testador de repetição do hash3
+    hash6= []
+    hash66 = [] #testador de repetição do hash4
+    
     n = len(d)
-    m = n / 4
+    m = n / quanthash
     for k in d.keys():
         #print(str(k) + '-> '+ str(d[k]))     
 
@@ -46440,23 +46446,41 @@ for d in tables:
             abs = abs+1 
         
     for i in range(0,n,1) :  
-        if (arm1[i] not in hash1) and (shain[i] not in hash22) and (len(hash2))<m:
+        if (arm1[i] not in hash1) and (shain[i] not in hash22) and (len(hash2))<m and quanthash>1:
             hash22.append(shain[i])  
             hash2.append(arm1[i])
             abs = abs+1 
 
     for i in range(0,n,1) :  
-        if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (shain[i] not in hash33) and (len(hash3))<m:
+        if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (shain[i] not in hash33) and (len(hash3))<m and quanthash>3:
             hash33.append(shain[i])  
             hash3.append(arm1[i])
             abs = abs+1 
 
     for i in range(0,n,1) :  
-        if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (arm1[i] not in hash3) and (shain[i] not in hash44) and (len(hash4))<m:
+        if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (arm1[i] not in hash3) and (shain[i] not in hash44) and (len(hash4))<m and quanthash>3:
             hash44.append(shain[i])  
             hash4.append(arm1[i])
             abs = abs+1 
+    for i in range(0,n,1) :  
+        if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (arm1[i] not in hash3)and (arm1[i] not in hash4) and (shain[i] not in hash55) and (len(hash5))<m and quanthash>5:
+            hash55.append(shain[i])  
+            hash5.append(arm1[i])
+            abs = abs+1 
+    for i in range(0,n,1) :  
+        if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (arm1[i] not in hash3)and (arm1[i] not in hash4)and (arm1[i] not in hash5) and (shain[i] not in hash66) and (len(hash6))<m and quanthash>5:
+            hash66.append(shain[i])  
+            hash6.append(arm1[i])
+            abs = abs+1 
 
+
+
+
+
+
+
+
+    
     tax =  len(arm1) / (len(hash1)+len(hash2)+len(hash3)+len(hash4))
     #print(tax,"%")
     #print("")
@@ -46467,9 +46491,10 @@ bits = (16+10+16)*abs
 media = np.mean(numeros)
 desvio = np.std(numeros)
 
+print("a quantidade de Hashs utilizados foi de", quanthash)
 print(f'O percentual medio por tabela de perdas é:", {media}%')
 print(f'O desvio padrão é: {desvio:.4}')
-print ("A quantidade absoluta de termos eh" , quant)
+#print ("A quantidade absoluta de termos eh" , quant)
 print("Quantidade de termos usados eh ", abs)
 print("As perdas absolutas foram de ", quant-abs)
 print("o percentural de perdas absolutas foram de" , quant/abs)
