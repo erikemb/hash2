@@ -4,8 +4,11 @@ import numpy
 
 numeros = []
 maior = 0
-
+maior2 = 0
+abs = 0 # quantidade de termos usados 
+quant = 0 # quantidade de  termos 
 tables = []
+bits = 0
 
 table_tmp = {}
 table_tmp[1024] = 233
@@ -46399,9 +46402,12 @@ for d in tables:
 
         if maior < k :
             maior = k
+        if maior2 < d[k] :
+            maior2 = k
 
         addr.append(str(k))        
         outs.append(str(d[k])) 
+        quant = quant+1 
 
     n_bits = np.ceil(np.log2(maior))   #calcula numero de bits a serem pegos da hash
     ax = int(np.ceil(n_bits/4))
@@ -46431,31 +46437,40 @@ for d in tables:
         if (shain[i] not in hash11) and (len(hash1))<m:
             hash11.append(shain[i])  
             hash1.append(arm1[i])
+            abs = abs+1 
         
     for i in range(0,n,1) :  
         if (arm1[i] not in hash1) and (shain[i] not in hash22) and (len(hash2))<m:
             hash22.append(shain[i])  
             hash2.append(arm1[i])
+            abs = abs+1 
 
     for i in range(0,n,1) :  
         if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (shain[i] not in hash33) and (len(hash3))<m:
             hash33.append(shain[i])  
             hash3.append(arm1[i])
+            abs = abs+1 
 
     for i in range(0,n,1) :  
         if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (arm1[i] not in hash3) and (shain[i] not in hash44) and (len(hash4))<m:
             hash44.append(shain[i])  
             hash4.append(arm1[i])
+            abs = abs+1 
 
-    tax = 100 * (len(hash1)+len(hash2)+len(hash3)+len(hash4)) / len(arm1)
+    tax =  len(arm1) / (len(hash1)+len(hash2)+len(hash3)+len(hash4))
     #print(tax,"%")
     #print("")
 
     numeros.append(tax)
 
+bits = (16+10+16)*abs
 media = np.mean(numeros)
 desvio = np.std(numeros)
-print("A precisão média é:", media)
-print("O desvio padrão é:", desvio)
 
-
+print(f'O percentual medio por tabela de perdas é:", {media}%')
+print(f'O desvio padrão é: {desvio:.4}')
+print ("A quantidade absoluta de termos eh" , quant)
+print("Quantidade de termos usados eh ", abs)
+print("As perdas absolutas foram de ", quant-abs)
+print("o percentural de perdas absolutas foram de" , quant/abs)
+print("A quantidade de bits utilizados foram de",bits, "bits")
