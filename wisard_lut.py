@@ -9,7 +9,22 @@ abs = 0 # quantidade de termos usados
 quant = 0 # quantidade de  termos 
 tables = []
 bits = 0
-quanthash = 6    # 1 2 4 6
+quanthash = 6   # 1 2 4 6
+n = 45192     #numero de chaves
+m = n / quanthash
+
+hash1 = [] 
+hash11 = [] #testador de repetição do hash1
+hash2 = []
+hash22 = [] #testador de repetição do hash2
+hash3 = [] 
+hash33 = [] #testador de repetição do hash3
+hash4= []
+hash44 = [] #testador de repetição do hash4
+hash5 = [] 
+hash55 = [] #testador de repetição do hash3
+hash6= []
+hash66 = [] #testador de repetição do hash4
 
 table_tmp = {}
 table_tmp[1024] = 233
@@ -46385,24 +46400,8 @@ for d in tables:
     sha=[]  #sha256 da entrada
     shain=[] #parte inicial da sha
     shaout=[] #parte final da sha 
-
-    arm1=[]  #união shain bo shaout
-
-    hash1 = [] 
-    hash11 = [] #testador de repetição do hash1
-    hash2 = []
-    hash22 = [] #testador de repetição do hash2
-    hash3 = [] 
-    hash33 = [] #testador de repetição do hash3
-    hash4= []
-    hash44 = [] #testador de repetição do hash4
-    hash5 = [] 
-    hash55 = [] #testador de repetição do hash3
-    hash6= []
-    hash66 = [] #testador de repetição do hash4
+    arm1=[]  #união shain bo shaout    
     
-    n = len(d)
-    m = n / quanthash
     for k in d.keys():
         #print(str(k) + '-> '+ str(d[k]))     
 
@@ -46426,49 +46425,48 @@ for d in tables:
         shaout.append(temp[-ax:])   #pega parte final da hash   
 
     
-    for i in range(0,n,1): #transforma em decimal
+    for i in range(len(sha)): #transforma em decimal
         hex_string = str(shain[i])
         shain[i] = int(hex_string, 16)
         hex_string = str(shaout[i])
         shaout[i] = int(hex_string, 16)   
         
 
-    for i in range(0,n,1):
-            temp = [shain[i]],[np.int(outs[i])],[shaout[i]]
+    for i in range(len(sha)):
+            temp = [np.int(outs[i])],[shaout[i]]
             arm1.append(temp)
 
     #parte teste
 
-    for i in range(0,n,1) :
+    for i in range(len(sha)) :
         if (shain[i] not in hash11) and (len(hash1))<m:
             hash11.append(shain[i])  
             hash1.append(arm1[i])
-            abs = abs+1 
-        
-    for i in range(0,n,1) :  
-        if (arm1[i] not in hash1) and (shain[i] not in hash22) and (len(hash2))<m and quanthash>1:
+            abs = abs+1          
+     
+        elif (shain[i] in hash11) and (shain[i] not in hash22) and (len(hash2))<m and quanthash>1:
             hash22.append(shain[i])  
             hash2.append(arm1[i])
             abs = abs+1 
 
-    for i in range(0,n,1) :  
-        if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (shain[i] not in hash33) and (len(hash3))<m and quanthash>3:
+    
+        elif (shain[i] in hash11) and (shain[i] in hash22) and (shain[i] not in hash33) and (len(hash3))<m and quanthash>3:
             hash33.append(shain[i])  
             hash3.append(arm1[i])
             abs = abs+1 
 
-    for i in range(0,n,1) :  
-        if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (arm1[i] not in hash3) and (shain[i] not in hash44) and (len(hash4))<m and quanthash>3:
+     
+        elif (shain[i] in hash11) and (shain[i] in hash22) and (shain[i] in hash33) and (shain[i] not in hash44) and (len(hash4))<m and quanthash>3:
             hash44.append(shain[i])  
             hash4.append(arm1[i])
             abs = abs+1 
-    for i in range(0,n,1) :  
-        if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (arm1[i] not in hash3)and (arm1[i] not in hash4) and (shain[i] not in hash55) and (len(hash5))<m and quanthash>5:
+     
+        elif (shain[i] in hash11) and (shain[i] in hash22) and (shain[i] in hash33)and (shain[i] in hash44) and (shain[i] not in hash55) and (len(hash5))<m and quanthash>5:
             hash55.append(shain[i])  
             hash5.append(arm1[i])
             abs = abs+1 
-    for i in range(0,n,1) :  
-        if (arm1[i] not in hash1) and (arm1[i] not in hash2) and (arm1[i] not in hash3)and (arm1[i] not in hash4)and (arm1[i] not in hash5) and (shain[i] not in hash66) and (len(hash6))<m and quanthash>5:
+     
+        elif (shain[i] in hash11) and (shain[i] in hash22) and (shain[i] in hash33)and (shain[i] in hash44)and (shain[i] in hash55) and (shain[i] not in hash66) and (len(hash6))<m and quanthash>5:
             hash66.append(shain[i])  
             hash6.append(arm1[i])
             abs = abs+1 
@@ -46481,21 +46479,27 @@ for d in tables:
 
 
     
-    tax =  len(arm1) / (len(hash1)+len(hash2)+len(hash3)+len(hash4))
+    tax =  n / (len(hash1)+len(hash2)+len(hash3)+len(hash4)+len(hash5)+len(hash6))
     #print(tax,"%")
     #print("")
 
     numeros.append(tax)
 
-bits = (16+10+16)*abs
+bits = (10+16)*abs
 media = np.mean(numeros)
 desvio = np.std(numeros)
 
 print("a quantidade de Hashs utilizados foi de", quanthash)
 print(f'O percentual medio por tabela de perdas é:", {media}%')
 print(f'O desvio padrão é: {desvio:.4}')
-#print ("A quantidade absoluta de termos eh" , quant)
+print ("A quantidade absoluta de termos eh" , quant)
 print("Quantidade de termos usados eh ", abs)
 print("As perdas absolutas foram de ", quant-abs)
-print("o percentural de perdas absolutas foram de" , quant/abs)
+print("o percentural de perdas absolutas foram de" , ((quant/abs)*100))
 print("A quantidade de bits utilizados foram de",bits, "bits")
+print(len(hash1))
+print(len(hash2))
+print(len(hash3))
+print(len(hash4))
+print(len(hash5))
+print(len(hash6))
