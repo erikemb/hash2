@@ -1,6 +1,6 @@
 from hashlib import sha256
 import numpy as np
-
+from collections import Counter
 
 
 
@@ -46374,26 +46374,36 @@ table_tmp[34441] = 871
 table_tmp[137] = 867
 tables.append(table_tmp)
 
+repete = []
 maior = 0
-
+quant = 0
 for d in tables:
    
     for k in d.keys():
         #print((k) , (d[k]))
         if maior < k :
             maior = k
-        
-
-n_bits = np.ceil(np.log2(maior))   #calcula numero de bits a serem pegos da hash
-ax = int(np.ceil(n_bits/4))
-
+        quant = quant + 1 
+        repete.append(k)
 
 print(maior)
+print(quant)
 
-print(n_bits)
-
-print(ax)
-
+print(len(repete))
 
 
+def remove_duplicates(lista):
+    return list(set(lista))
 
+sem_repetidos = remove_duplicates(repete)
+print(len(sem_repetidos))
+
+def encontrar_mais_repetido(repete):
+  contagem = Counter(repete)
+  elemento, quantidade = contagem.most_common(1)[0]
+  return elemento, quantidade
+
+
+mais_repetido, quantidade = encontrar_mais_repetido(repete)
+
+print("O número mais repetido é", encontrar_mais_repetido(repete))
