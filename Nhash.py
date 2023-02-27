@@ -4,7 +4,7 @@ import wisard_lut
 import statistics
 
 tabela = wisard_lut.tabelahash()
-quanthash = 1  #quantidade de hashs    1, 2 , 4  , 8 , 16
+quanthash = 8  #quantidade de hashs    1, 2 , 4  , 8 , 16
 teste = []
 linha = 0  #calcular tabela em caso de erros 
 
@@ -68,12 +68,15 @@ for d in tabela:
                 numTeste = numTeste + 1
 
                
-    teste.append((numTeste/quant)*100)           
+    #teste.append((numTeste/quant)*100)    
+    teste.append(quant-numTeste)         
     #print(n_bits ,ax, quant , ay , quanthash) #numero de bits pegos / numero de termos / numero de hashs     
-media = np.mean(teste)
+"""media = np.mean(teste)
 print("Média:", media)
 desvio_padrao = statistics.stdev(teste)
-print(desvio_padrao)
+print(desvio_padrao)"""
+
+print(teste) #mostra as perdas por tabela 
 
 
 
